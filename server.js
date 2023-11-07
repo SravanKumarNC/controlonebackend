@@ -34,7 +34,7 @@ app.use(taskRoutes)
 app.use(driverRoutes)  
 // Defining routes
 app.get('/', (req, res) => {
-  res.setHeaders('Access-Control-Allow-Credentials',"true");
+  res.setHeader('Access-Control-Allow-Credentials',"true");
   res.send('Welcome to the backend server!');
 });
 
