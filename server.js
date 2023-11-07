@@ -25,12 +25,7 @@ mongoose.connect('mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.
 
 const app = express();
 const port = 4000;
-app.use(
-  cors({
-    origin: 'http://localhost:3000', // Replace with the actual URL of your frontend
-    methods: ["GET","POST"]
-  })
-);
+app.use(cors());
 // Middleware
 app.use(express.json());
 app.use(forkliftRoutes)
@@ -39,6 +34,7 @@ app.use(taskRoutes)
 app.use(driverRoutes)  
 // Defining routes
 app.get('/', (req, res) => {
+  res.setHeaders('Access-Control-Allow-Credentials',"true");
   res.send('Welcome to the backend server!');
 });
 
