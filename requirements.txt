@@ -1,6 +1,5 @@
 pymongo == 4.6.0
 sockets
 pygame
-threading
 time
 psutil
