@@ -5,7 +5,7 @@ const  { authenticateToken }  = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.use('/api/forklifts', authenticateToken); 
+// router.use('/api/forklifts', authenticateToken); 
 
 router.post('/api/forklifts', forkliftController.createForklift);
 
