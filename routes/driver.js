@@ -6,7 +6,7 @@ const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHa
 
 
 
-router.use('/api/driver', authenticateToken); 
+// router.use('/api/driver', authenticateToken); 
 router.get('/api/driver', driverController.getAllDriver);
 router.post('/api/driver', driverController.createDriver);
 router.get('/api/driver/:username', driverController.getDriverByID);
