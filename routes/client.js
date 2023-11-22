@@ -8,7 +8,7 @@ const  { authenticateToken }  = require('../middleware/authMiddleware');
 router.post('/api/clients/register', register);
 router.post('/api/clients/login', login);
 
-router.use('/api/clients', authenticateToken); 
+// router.use('/api/clients', authenticateToken); 
 
 
 router.get('/api/clients', clientController.getClients);
