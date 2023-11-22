@@ -3,16 +3,19 @@ const mongoose = require('mongoose');
 const validator = require('validator')
 
 const driverSchema = mongoose.Schema({
+    id:{
+        type:String,
+        required: true,
+        unique: true
+    },
+
     username: {
         type: String,
         unique: true,
         required: true,
-        validate: {
-            validator: validator.isEmail,
-            message: 'Invalid email address'
-        }
     },
-    password: String,
+
+    
     firstName: String,
     lastName: String,
     status : String,
