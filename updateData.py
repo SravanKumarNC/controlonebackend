@@ -1,4 +1,6 @@
-import pymongo as pymongo
+import pip
+pip.install('pymongo')
+import pymongo
 import time
 import random
 
