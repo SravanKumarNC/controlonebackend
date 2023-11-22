@@ -1,3 +1,7 @@
 pymongo == 4.5.0
 python == 3.11.6
-
+socket
+pygame
+threading
+time
+psutil
