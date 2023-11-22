@@ -1,4 +1,4 @@
-# import pymongo
+import pymongo as pymongo
 import time
 import random
 
