@@ -1,10 +1,12 @@
 const { spawn } = require('child_process');
 
+
+const pythonScriptPath = '../backend/updateData.py'; // Replace with your Python script path
 let pythonProcess = null;
 
 function startPythonScript(callback) {
     if (!pythonProcess) {
-        pythonProcess = spawn('python', ['E:\\python\\updateData.py']);
+        pythonProcess = spawn('python', [pythonScriptPath]);
 
         pythonProcess.stdout.on('data', (data) => {
             console.log(`Python script output: ${data}`);
