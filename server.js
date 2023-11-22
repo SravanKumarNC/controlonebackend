@@ -1,15 +1,13 @@
-// server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
+const session = require('express-session');
 const forkliftRoutes = require('./routes/forklift');
 const clientRoutes = require('./routes/client');
 const taskRoutes = require('./routes/tasks');
 const driverRoutes = require('./routes/driver');
+require('dotenv').config();
 
-
-// Connecting to MongoDB
 mongoose.connect('mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.mongodb.net/ControlOneDB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -21,24 +19,65 @@ mongoose.connect('mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.
   console.error('Error connecting to MongoDB:', error);
 });
 
-
-
 const app = express();
 const port = 4000;
-app.use(cors());
-// Middleware
+
+// Middleware setup
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ["GET", "POST"],
+    credentials: true // Enable credentials (cookies, authorization headers)
+  })
+);
+
 app.use(express.json());
-app.use(forkliftRoutes)
-app.use(clientRoutes)
-app.use(taskRoutes)
-app.use(driverRoutes)  
-// Defining routes
+
+// Configure express-session middleware
+// app.use(session({
+//   secret: process.env.JWT_SECRETKEY, // Replace with a secure secret key for session encryption
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     secure: false, // Set to true if your app is served over HTTPS
+//     maxAge: 24 * 60 * 60 * 1000 // Session duration in milliseconds (e.g., 1 day)
+//   }
+// }));
+
+// Define routes
+app.use(forkliftRoutes);
+app.use(clientRoutes);
+app.use(taskRoutes);
+app.use(driverRoutes);
+
+// Route to set session data
+// app.get('/set-session', (req, res) => {
+//   req.session.user = { username: 'example_user', email: 'user@example.com' };
+//   res.send('Session data set successfully');
+// });
+
+// // Route to get session data
+// app.get('/get-session', (req, res) => {
+//   const userData = req.session.user;
+//   if (userData) {
+//     res.json(userData);
+//   } else {
+//     res.status(404).send('Session data not found');
+//   }
+// });
+
+// Root route
 app.get('/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Credentials',"true");
   res.send('Welcome to the backend server!');
 });
 
-// Starting the server
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// process.on('SIGINT', () => {
+//   stopPythonScript(() => {
+//       process.exit(0);
+//   });
+// });
