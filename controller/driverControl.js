@@ -22,18 +22,6 @@ const getAllDriver = async (req, res) => {
   }
 };
 
-const getDriverByUsername = async (req, res) => {
-    try {
-        const driverData = await driverModel.findOne({ username: req.params.username });
-        if (!driverData) {
-            return res.status(404).send('Client Not Found');
-        }
-        res.json(driverData);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
-    }
-};
 
 const updateDriver = async (req, res) => {
     try {
@@ -48,6 +36,22 @@ const updateDriver = async (req, res) => {
         res.status(500).send('Internal Server Issue');
     }
 };
+
+const getDriverByID = async (req, res) => {
+    try {
+        // neededID = String(req.params.id);
+        const driverOne = await driverModel.findOne({ username: req.params.username });
+        if (!driverOne) {
+            console.log(`Driver with ID ${req.params.id} not found.`);
+            return res.status(404).send('Driver Not Found');
+        }
+        res.json(driverOne);
+    } catch (err) {
+        console.error('Error fetching driver by ID:', err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
 
 const deleteDriver = async (req, res) => {
     try {
@@ -66,7 +70,7 @@ const deleteDriver = async (req, res) => {
 module.exports = {
     getAllDriver,
     createDriver,
-    getDriverByUsername,
+    getDriverByID,
     updateDriver,
     deleteDriver,
 };
