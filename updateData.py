@@ -1,4 +1,4 @@
-import pymongo from 'https://github.com/mongodb/mongo-python-driver.
+import pymongo
 import time
 import random
 
