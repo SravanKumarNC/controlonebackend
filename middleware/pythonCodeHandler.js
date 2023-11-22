@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 
 
-const pythonScriptPath = '../backend/updateData.py'; // Replace with your Python script path
+const pythonScriptPath = './updateData.py'; // Replace with your Python script path
 let pythonProcess = null;
 
 function startPythonScript(callback) {
