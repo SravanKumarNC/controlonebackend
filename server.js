@@ -25,7 +25,7 @@ const port = 4000;
 // Middleware setup
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://control-one.onrender.com',
     methods: ["GET", "POST"],
     credentials: true // Enable credentials (cookies, authorization headers)
   })
