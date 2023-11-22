@@ -1,1 +1,2 @@
 pymongo
+python==3.8   # Specify the Python version
