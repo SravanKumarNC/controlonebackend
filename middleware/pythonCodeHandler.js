@@ -1,7 +1,7 @@
 const { exec,spawn } = require('child_process');
 
 
-const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
+const pythonScriptPath = 'https://controlonepythonscript.onrender.com'; // Replace with your Python script path
 let pythonProcess = null;
 
 function installPymongo(callback) {
