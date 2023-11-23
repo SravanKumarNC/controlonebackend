@@ -1,5 +1,4 @@
 const { exec } = require('child_process');
-process.env.PYTHONPATH = '/opt/render/.local/lib/python3.7/site-packages';
 
 let pythonProcess = null; // Define the variable to hold the Python process
 
