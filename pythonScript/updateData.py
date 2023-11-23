@@ -1,41 +1,43 @@
-const { exec } = require('child_process');
+import pymongo
+import time
+import random
 
-let pythonProcess = null; // Define the variable to hold the Python process
-
-function startPythonScript(callback) {
-    if (!pythonProcess) {
-        const pythonScriptPath = 'python_script.py'; // Replace with your Python script path
-
-        pythonProcess = exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error starting Python script: ${error.message}`);
-            }
-            if (stderr) {
-                console.error(`Python script error: ${stderr}`);
-            }
-            console.log(`Python script output: ${stdout}`);
-        });
-
-        pythonProcess.on('exit', (code) => {
-            console.log(`Python script process exited with code ${code}`);
-            pythonProcess = null; // Reset the process variable after completion
-        });
-
-        callback('Python script started');
-    } else {
-        callback('Python script is already running');
-    }
-}
-
-function stopPythonScript(callback) {
-    if (pythonProcess) {
-        pythonProcess.kill(); // Terminate the Python process
-        pythonProcess = null; // Reset the process variable
-        callback('Python script stopped');
-    } else {
-        callback('No running Python script to stop');
-    }
-}
-
-
-module.exports = { startPythonScript, stopPythonScript };
+mongodb_uri = "mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.mongodb.net/ControlOneDB?retryWrites=true&w=majority"
+database_name = "ControlOneDB"  # database name
+collection_name = "equipments"  # collection name
+client = pymongo.MongoClient(mongodb_uri)
+if client != '':
+    print('Connected to mongoDB')
+db = client[database_name]
+collection = db[collection_name]
+def update_data(arg1,*args):
+    forklift_id = arg1
+    results = collection.find({"equipment_id": forklift_id})
+    print("BEFORE UPDATION : ")
+    for result in results:
+        print(result)
+    property = []
+    values =[]
+    for i in range(0,len(args),2):
+        property.append(args[i])
+    for i in range(1,len(args),2):
+        values.append(args[i])
+    for i in range(0,len(property)):
+        collection.update_one({"id": forklift_id}, {"$set": {property[i]: values[i]}})
+    results = collection.find({"id": forklift_id})
+    print("AFTER UPDATION : ")
+    for result in results:
+        print(result)
+for i in range(100):
+    if(i<50):
+        update_data('5','status','Active')
+        update_data('5', 'pedalValue', random.randint(1, 100))
+        update_data('5',"downLidar",random.randint(1,100))
+        update_data('5','steeringStatus',random.randint(1,100))
+        update_data('5','pedalValue',random.randint(1,100))
+    else:
+        update_data('5','status','Deactive')
+        update_data('5', 'pedalValue', random.randint(1, 100))
+        update_data('5',"downLidar",random.randint(1,100))
+        update_data('5','steeringStatus',random.randint(1,100))
+        update_data('5','pedalValue',random.randint(1,100))
