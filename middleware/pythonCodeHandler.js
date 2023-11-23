@@ -7,7 +7,7 @@ function startPythonScript(callback) {
     if (!pythonProcess) {
         const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
 
-        pythonProcess = exec(`sudo python ${pythonScriptPath}`, (error, stdout, stderr) => {
+        pythonProcess = exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error starting Python script: ${error.message}`);
             }
