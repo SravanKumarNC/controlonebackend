@@ -30,16 +30,16 @@ def update_data(arg1,*args):
     print("AFTER UPDATION : ")
     for result in results:
         print(result)
-for i in range(100):
-    if(i<50):
-        update_data('5','status','Active')
-        update_data('5', 'pedalValue', random.randint(1, 100))
-        update_data('5',"downLidar",random.randint(1,100))
-        update_data('5','steeringStatus',random.randint(1,100))
-        update_data('5','pedalValue',random.randint(1,100))
+for i in range(20):
+    if(i<10):
+        update_data('3','status','Active')
+        update_data('3', 'pedalValue', i)
+        update_data('3',"downLidar",i)
+        update_data('3','steeringStatus',i)
+        update_data('3','pedalValue',i)
     else:
-        update_data('5','status','Deactive')
-        update_data('5', 'pedalValue', random.randint(1, 100))
-        update_data('5',"downLidar",random.randint(1,100))
-        update_data('5','steeringStatus',random.randint(1,100))
-        update_data('5','pedalValue',random.randint(1,100))
+        update_data('3','status','Deactive')
+        update_data('3', 'pedalValue', i)
+        update_data('3',"downLidar",i)
+        update_data('3','steeringStatus',i)
+        update_data('3','pedalValue',i)
