@@ -28,6 +28,7 @@
     "socket.io-client": "^4.7.2",
     "uuid": "^9.0.1",
     "validator": "^13.11.0",
-    "ws": "^8.14.2"
+    "ws": "^8.14.2",
+    "python-shell": "^5.0.0"
   }
 }
