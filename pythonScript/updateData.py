@@ -1,45 +1,21 @@
-print('HII')
-print(1+2+3+4)
-import pymongo
-import time
-import random
+import matplotlib.pyplot as plt
+import numpy as np
 
-mongodb_uri = "mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.mongodb.net/ControlOneDB?retryWrites=true&w=majority"
-database_name = "ControlOneDB"  # database name
-collection_name = "equipments"  # collection name
-client = pymongo.MongoClient(mongodb_uri)
-if client != '':
-    print('Connected to mongoDB')
-db = client[database_name]
-collection = db[collection_name]
-def update_data(arg1,*args):
-    forklift_id = arg1
-    results = collection.find({"equipment_id": forklift_id})
-    print("BEFORE UPDATION : ")
-    for result in results:
-        print(result)
-    property = []
-    values =[]
-    for i in range(0,len(args),2):
-        property.append(args[i])
-    for i in range(1,len(args),2):
-        values.append(args[i])
-    for i in range(0,len(property)):
-        collection.update_one({"id": forklift_id}, {"$set": {property[i]: values[i]}})
-    results = collection.find({"id": forklift_id})
-    print("AFTER UPDATION : ")
-    for result in results:
-        print(result)
-for i in range(100):
-    if(i<50):
-        update_data('5','status','Active')
-        update_data('5', 'pedalValue', random.randint(1, 100))
-        update_data('5',"downLidar",random.randint(1,100))
-        update_data('5','steeringStatus',random.randint(1,100))
-        update_data('5','pedalValue',random.randint(1,100))
-    else:
-        update_data('5','status','Deactive')
-        update_data('5', 'pedalValue', random.randint(1, 100))
-        update_data('5',"downLidar",random.randint(1,100))
-        update_data('5','steeringStatus',random.randint(1,100))
-        update_data('5','pedalValue',random.randint(1,100))
+# Generate some data
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# Create a plot
+plt.figure(figsize=(8, 6))
+plt.plot(x, y, label='sin(x)')
+plt.title('Sine Wave')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.legend()
+plt.grid(True)
+
+# Save the plot as an image (optional)
+plt.savefig('sine_wave_plot.png')
+
+# Show the plot (optional, will display a window with the plot)
+plt.show()
