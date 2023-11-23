@@ -1,23 +1,27 @@
-const { exec } = require('child_process');
-process.env.PYTHONPATH = '/opt/render/.local/lib/python3.7/site-packages';
+const { PythonShell } = require('python-shell');
 
-let pythonProcess = null; // Define the variable to hold the Python process
+let pythonProcess = null; // Define the variable to hold the PythonShell instance
 
 function startPythonScript(callback) {
     if (!pythonProcess) {
         const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
 
-        pythonProcess = exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error starting Python script: ${error.message}`);
+        let options = {
+            mode: 'text',
+            pythonPath: 'python', // or specify your Python interpreter path if needed
+            pythonOptions: ['-u'], // get print results in real-time
+            scriptPath: pythonScriptPath // path to your Python script
+        };
+
+        pythonProcess = PythonShell.run('your_script.py', options, (err, result) => {
+            if (err) {
+                console.error('Error starting Python script:', err);
+            } else {
+                console.log('Python script output:', result);
             }
-            if (stderr) {
-                console.error(`Python script error: ${stderr}`);
-            }
-            console.log(`Python script output: ${stdout}`);
         });
 
-        pythonProcess.on('exit', (code) => {
+        pythonProcess.on('close', (code) => {
             console.log(`Python script process exited with code ${code}`);
             pythonProcess = null; // Reset the process variable after completion
         });
@@ -30,7 +34,7 @@ function startPythonScript(callback) {
 
 function stopPythonScript(callback) {
     if (pythonProcess) {
-        pythonProcess.kill(); // Terminate the Python process
+        pythonProcess.childProcess.kill(); // Terminate the PythonShell process
         pythonProcess = null; // Reset the process variable
         callback('Python script stopped');
     } else {
