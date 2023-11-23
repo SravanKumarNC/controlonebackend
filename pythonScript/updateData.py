@@ -1,5 +1,6 @@
 import os
 os.system('pip install pymongo')
+time.sleep(10)
 import pymongo
 import time
 import random
