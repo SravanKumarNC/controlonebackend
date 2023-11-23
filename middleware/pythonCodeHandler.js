@@ -36,3 +36,5 @@ function stopPythonScript(callback) {
         callback('No running Python script to stop');
     }
 }
+
+module.exports = { startPythonScript, stopPythonScript };
