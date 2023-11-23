@@ -1,22 +1,22 @@
-const { exec,spawn } = require('child_process');
+const { exec } = require('child_process');
 
-
-const pythonScriptPath = 'https://controlonepythonscript.onrender.com/updateData.py'; // Replace with your Python script path
-let pythonProcess = null;
+let pythonProcess = null; // Define the variable to hold the Python process
 
 function startPythonScript(callback) {
     if (!pythonProcess) {
-        pythonProcess = spawn('python', [pythonScriptPath]);
+        const pythonScriptPath = 'python_script.py'; // Replace with your Python script path
 
-        pythonProcess.stdout.on('data', (data) => {
-            console.log(`Python script output: ${data}`);
+        pythonProcess = exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error starting Python script: ${error.message}`);
+            }
+            if (stderr) {
+                console.error(`Python script error: ${stderr}`);
+            }
+            console.log(`Python script output: ${stdout}`);
         });
 
-        pythonProcess.stderr.on('data', (data) => {
-            console.error(`Python script error: ${data}`);
-        });
-
-        pythonProcess.on('close', (code) => {
+        pythonProcess.on('exit', (code) => {
             console.log(`Python script process exited with code ${code}`);
             pythonProcess = null; // Reset the process variable after completion
         });
@@ -36,5 +36,3 @@ function stopPythonScript(callback) {
         callback('No running Python script to stop');
     }
 }
-
-module.exports = { installPymongo, startPythonScript, stopPythonScript };
