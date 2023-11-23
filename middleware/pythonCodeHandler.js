@@ -4,23 +4,6 @@ const { exec,spawn } = require('child_process');
 const pythonScriptPath = 'https://controlonepythonscript.onrender.com/updateData.py'; // Replace with your Python script path
 let pythonProcess = null;
 
-function installPymongo(callback) {
-    exec('pip install pymongo', (error, stdout, stderr) => {
-        if (error) {
-            console.error(`Error installing pymongo: ${error.message}`);
-            callback('Failed to install pymongo');
-            return;
-        }
-        if (stderr) {
-            console.error(`stderr: ${stderr}`);
-            callback('Failed to install pymongo');
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        callback('pymongo installed successfully');
-    });
-}
-
 function startPythonScript(callback) {
     if (!pythonProcess) {
         pythonProcess = spawn('python', [pythonScriptPath]);
