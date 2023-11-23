@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const driverController = require('../controller/driverControl');
 const  { authenticateToken }  = require('../middleware/authMiddleware');
-const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
+const {installPymongo,startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
 
 
 
@@ -14,6 +14,9 @@ router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
 router.post('/start_code', (req, res) => {
+    installPymongo((result) => {
+        res.send(result);
+    });
     startPythonScript((result) => {
         res.send(result);
     });
