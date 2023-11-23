@@ -1,4 +1,4 @@
-const { spawn } = require('child_process');
+const { exec,spawn } = require('child_process');
 
 
 const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
