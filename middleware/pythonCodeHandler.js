@@ -4,7 +4,7 @@ let pythonProcess = null; // Define the variable to hold the Python process
 
 function startPythonScript(callback) {
     if (!pythonProcess) {
-        const pythonScriptPath = 'python_script.py'; // Replace with your Python script path
+        const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
 
         pythonProcess = exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
             if (error) {
