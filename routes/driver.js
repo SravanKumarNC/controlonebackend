@@ -14,9 +14,6 @@ router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
 router.post('/start_code', (req, res) => {
-    installPymongo((result) => {
-        res.send(result);
-    });
     startPythonScript((result) => {
         res.send(result);
     });
