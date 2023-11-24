@@ -1,8 +1,13 @@
-import os
-os.system('pip install pymongo')
-import pymongo
+import subprocess
 import time
 import random
+
+# Install pymongo using pip
+subprocess.run(['pip', 'install', 'pymongo'])
+
+# Import pymongo after installation
+import pymongo
+
 
 mongodb_uri = "mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.mongodb.net/ControlOneDB?retryWrites=true&w=majority"
 database_name = "ControlOneDB"  # database name
