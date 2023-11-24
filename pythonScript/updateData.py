@@ -3,7 +3,6 @@ import time
 import random
 
 # Install pymongo using pip
-subprocess.run(['pip', 'install', 'pymongo'])
 
 # Import pymongo after installation
 import pymongo
