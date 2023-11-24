@@ -5,9 +5,6 @@ while exit_code != 0:
     exit_code = os.system('exit $?')
 import time
 import random
-
-
-
 import pymongo
 
 
