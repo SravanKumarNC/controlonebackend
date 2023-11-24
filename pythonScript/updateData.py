@@ -1,10 +1,7 @@
-import subprocess
+import os
+os.system('pip install pymongo')
 import time
 import random
-
-# Install pymongo using pip
-
-# Import pymongo after installation
 import pymongo
 
 
