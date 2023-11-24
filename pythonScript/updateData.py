@@ -1,5 +1,5 @@
 import os
-wait(os.system('pip install pymongo'))
+os.system('pip install pymongo')
 import time
 import random
 
