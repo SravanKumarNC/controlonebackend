@@ -1,14 +1,10 @@
-# import os
-# os.system('pip install pymongo')
-# import time
-# import random
-import subprocess
+import os
+wait(os.system('pip install pymongo'))
 import time
 import random
 
-# Install pymongo using pip
-pip_install_process = subprocess.Popen(['pip', 'install', 'pymongo'])
-pip_install_process.wait()  # Wait for the installation to complete
+
+
 import pymongo
 
 
