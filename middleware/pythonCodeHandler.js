@@ -1,23 +1,29 @@
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
+
 process.env.PYTHONPATH = '/opt/render/.local/lib/python3.7/site-packages';
 
-let pythonProcess = null; // Define the variable to hold the Python process
+let pythonProcess = null;
 
 function startPythonScript(callback) {
     if (!pythonProcess) {
         const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
 
-        pythonProcess = exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error starting Python script: ${error.message}`);
-            }
-            if (stderr) {
-                console.error(`Python script error: ${stderr}`);
-            }
-            console.log(`Python script output: ${stdout}`);
+        pythonProcess = spawn('python', [pythonScriptPath], {
+            env: {
+                ...process.env,
+                PYTHONPATH: '/opt/render/.local/lib/python3.7/site-packages',
+            },
         });
 
-        pythonProcess.on('exit', (code) => {
+        pythonProcess.stdout.on('data', (data) => {
+            console.log(`Python script stdout: ${data}`);
+        });
+
+        pythonProcess.stderr.on('data', (data) => {
+            console.error(`Python script stderr: ${data}`);
+        });
+
+        pythonProcess.on('close', (code) => {
             console.log(`Python script process exited with code ${code}`);
             pythonProcess = null; // Reset the process variable after completion
         });
