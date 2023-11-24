@@ -1,5 +1,8 @@
 import os
 os.system('pip install pymongo')
+exit_code = 1
+while exit_code != 0:
+    exit_code = os.system('exit $?')
 import time
 import random
 
