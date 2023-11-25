@@ -10,7 +10,7 @@ function startPythonScript(callback) {
 
         pythonProcess = spawn('python', [pythonScriptPath], {
             env: {
-                PYTHONPATH: '/opt/render/.local/lib/python3.7/site-packages',
+                PYTHONPATH: '//opt/render/project/src/.venv/lib/python3.7/site-packages',
             },
         });
 
