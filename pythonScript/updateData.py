@@ -6,8 +6,6 @@
 import time
 import random
 import pymongo
-
-
 mongodb_uri = "mongodb+srv://sudusudevku:Ernesto60@controlonecluster.amfafgu.mongodb.net/ControlOneDB?retryWrites=true&w=majority"
 database_name = "ControlOneDB"  # database name
 collection_name = "equipments"  # collection name
