@@ -1,3 +1,3 @@
-pymongo
+pymongo == 4.5.0
 dnspython
 matplotlib
