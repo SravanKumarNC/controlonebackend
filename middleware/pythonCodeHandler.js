@@ -1,12 +1,11 @@
 const { spawn } = require('child_process');
 
-process.env.PYTHONPATH = '/opt/render/.local/lib/python3.7/site-packages';
 
 let pythonProcess = null;
 
 function startPythonScript(callback) {
     if (!pythonProcess) {
-        const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
+        const pythonScriptPath = './PythonCode/webhtml2.py'; // Replace with your Python script path
 
         pythonProcess = spawn('python', [pythonScriptPath]) 
         // {
