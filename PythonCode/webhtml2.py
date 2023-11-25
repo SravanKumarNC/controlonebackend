@@ -4,8 +4,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 import threading
-import os
-
 
 def load_and_click(i, html_file_path, camera_channel):
     with open(html_file_path, 'r', encoding='utf-8') as file:
@@ -42,16 +40,7 @@ def load_and_click(i, html_file_path, camera_channel):
 
 html_file_paths = [r"E:\ControlOne\backend\test\lokesh1.html"]
 
-
-# Get the path to the user's AppData directory
-appdata_path = os.getenv('LOCALAPPDATA')
-
-if appdata_path:
-    chrome_profile_path = os.path.join(appdata_path, 'Google', 'Chrome', 'User Data', 'Profile 1')
-    profile_directories = [chrome_profile_path]
-    print("Chrome Profile Directory:", profile_directories)
-else:
-    print("AppData directory not found.")
+profile_directories = [r'C:\Users\USER\AppData\Local\Google\Chrome\User Data\Profile 1']
 
 camera_channels = ['channel50'] 
 # Set Chrome options and profile directories for each display
