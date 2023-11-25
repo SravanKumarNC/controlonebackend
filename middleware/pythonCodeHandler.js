@@ -8,11 +8,12 @@ function startPythonScript(callback) {
     if (!pythonProcess) {
         const pythonScriptPath = './pythonScript/updateData.py'; // Replace with your Python script path
 
-        pythonProcess = spawn('python', [pythonScriptPath], {
-            env: {
-                PYTHONPATH: '//opt/render/project/src/.venv/lib/python3.7/site-packages',
-            },
-        });
+        pythonProcess = spawn('python', [pythonScriptPath]) 
+        // {
+        //     env: {
+        //         PYTHONPATH: '//opt/render/project/src/.venv/lib/python3.7/site-packages',
+        //     },
+        // });
 
         pythonProcess.stdout.on('data', (data) => {
             console.log(`Python script stdout: ${data}`);
