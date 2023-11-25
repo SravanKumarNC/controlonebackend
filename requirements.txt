@@ -3,3 +3,4 @@ dnspython
 matplotlib
 bs4
 selenium
+pathlib
