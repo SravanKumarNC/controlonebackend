@@ -27,7 +27,9 @@ function getChromeProfileDirectory() {
 }
 
 router.get('/modified_page', async (req, res) => {
-  const htmlFilePath = '../test/lokesh1.html;
+  const relativeHtmlFilePath = '../test/lokesh1.html'; // Relative path to the HTML file
+  const absoluteHtmlFilePath = path.resolve(__dirname, relativeHtmlFilePath); // Resolve the relative path
+  const HtmlFilePath = 'file://' + absoluteHtmlFilePath;
   const profileDirectory = getChromeProfileDirectory();
 
   try {
