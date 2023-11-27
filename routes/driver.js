@@ -47,9 +47,7 @@ router.get('/autofill-and-capture', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+
 
 router.get('/start_code', (req, res) => {
     const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
