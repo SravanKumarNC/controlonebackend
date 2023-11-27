@@ -15,12 +15,11 @@ router.get('/api/driver/:username', driverController.getDriverByID);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
-router.get('/stored_webpage', async (req, res) => {
-     try {
+app.get('/autofill-and-capture', async (req, res) => {
+  try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    // Navigate to the external website
     await page.goto('https://awslabs.github.io/amazon-kinesis-video-streams-webrtc-sdk-js/examples/index.html');
 
     // Perform actions to fill the form using Puppeteer
@@ -29,14 +28,28 @@ router.get('/stored_webpage', async (req, res) => {
     await page.type('#inputField2', 'Your value 2');
     // ... Continue filling the form with necessary values
 
-    // Close the browser after the form is filled
+    // Capture the video stream using Puppeteer (example)
+    const videoStream = await page.evaluate(() => {
+      // Perform actions to capture the video stream and extract necessary data
+      // Return the video stream data or relevant information
+      // This is a hypothetical example, actual implementation depends on the target site's structure
+      const videoElement = document.querySelector('video');
+      return videoElement ? videoElement.src : null;
+    });
+
     await browser.close();
 
-    res.status(200).send('Form filled successfully');
+    // Send the captured video stream data or information back to the client
+    res.status(200).json({ videoStream });
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).send('Failed to fill the form');
+    res.status(500).send('Failed to capture the video stream');
   }
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 
 router.get('/start_code', (req, res) => {
     const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
