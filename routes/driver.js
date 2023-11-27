@@ -29,7 +29,7 @@ function getChromeProfileDirectory() {
 router.get('/modified_page', async (req, res) => {
   const relativeHtmlFilePath = '../test/lokesh1.html'; // Relative path to the HTML file
   const absoluteHtmlFilePath = path.resolve(__dirname, relativeHtmlFilePath); // Resolve the relative path
-  const htmlFilePath = 'file://' + absoluteHtmlFilePath;
+  const HtmlFilePath = 'file://' + absoluteHtmlFilePath;
   const profileDirectory = getChromeProfileDirectory();
 
   try {
@@ -43,7 +43,7 @@ router.get('/modified_page', async (req, res) => {
     });
     const page = await browser.newPage();
 
-    await page.goto(`file://${htmlFilePath}`);
+    await page.goto(HtmlFilePath); // Use the correct variable
 
     const htmlData = await page.content();
     const $ = cheerio.load(htmlData);
@@ -66,6 +66,7 @@ router.get('/modified_page', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 
 
