@@ -24,8 +24,10 @@ router.get('/autofill-and-capture', async (req, res) => {
 
     // Perform actions to fill the form using Puppeteer
     // For example:
-    await page.type('region', 'us-west-2');
-    await page.type('ChannelName', 'channel50');
+    const regionInput = document.getElementById('region');
+    regionInput.value = 'us-west-2'; // Set the desired value here
+    const regionInput = document.getElementById('ChannelName');
+    regionInput.value = 'channel50';
     // ... Continue filling the form with necessary values
 
     // Capture the video stream using Puppeteer (example)
