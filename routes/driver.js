@@ -14,13 +14,13 @@ router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
 router.get('/stored_webpage', async (req, res) => {
-    try {
-        const filePath = path.join(__dir, '../PythonCode/lokesh1.html'); // Replace with path to your stored HTML file
+     try {
+        const filePath = path.join(__dirname, '../PythonCode/lokesh1.html');
         const htmlContent = await fs.readFile(filePath, 'utf-8');
-        res.json({ htmlContent, formData: storedFormData });
+        res.send(htmlContent);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).send('Error fetching stored webpage');
+        res.status(500).send('Error fetching webpage content');
     }
 });
 
