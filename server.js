@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
+const path = require('path');
 const forkliftRoutes = require('./routes/forklift');
 const clientRoutes = require('./routes/client');
 const taskRoutes = require('./routes/tasks');
