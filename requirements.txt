@@ -4,4 +4,4 @@ matplotlib
 bs4
 selenium
 pathlib
-undetected-chromedriver
+chromedriver
