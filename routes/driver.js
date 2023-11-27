@@ -13,6 +13,17 @@ router.get('/api/driver/:username', driverController.getDriverByID);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
+router.get('/stored_webpage', async (req, res) => {
+    try {
+        const filePath = path.join('../PythonCode/', 'lokesh1.html'); // Replace with path to your stored HTML file
+        const htmlContent = await fs.readFile(filePath, 'utf-8');
+        res.json({ htmlContent, formData: storedFormData });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Error fetching stored webpage');
+    }
+});
+
 router.get('/start_code', (req, res) => {
     const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
     res.json({ url: urlToOpen });
