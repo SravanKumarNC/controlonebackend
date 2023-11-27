@@ -17,14 +17,26 @@ router.delete('/api/driver/:username', driverController.deleteDriver);
 
 router.get('/stored_webpage', async (req, res) => {
      try {
-        const filePath = path.join(__dirname, '../PythonCode/lokesh1.html');
-        const htmlContent = await fs.readFile(filePath, 'utf-8');
-        res.send(htmlContent);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send('Error fetching webpage content');
-    }
-});
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    // Navigate to the external website
+    await page.goto('https://awslabs.github.io/amazon-kinesis-video-streams-webrtc-sdk-js/examples/index.html');
+
+    // Perform actions to fill the form using Puppeteer
+    // For example:
+    await page.type('#inputField1', 'Your value 1');
+    await page.type('#inputField2', 'Your value 2');
+    // ... Continue filling the form with necessary values
+
+    // Close the browser after the form is filled
+    await browser.close();
+
+    res.status(200).send('Form filled successfully');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Failed to fill the form');
+  }
 
 router.get('/start_code', (req, res) => {
     const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
