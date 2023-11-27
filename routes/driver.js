@@ -15,7 +15,7 @@ router.get('/api/driver/:username', driverController.getDriverByID);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
-app.get('/autofill-and-capture', async (req, res) => {
+router.get('/autofill-and-capture', async (req, res) => {
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
