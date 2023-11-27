@@ -4,7 +4,7 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 const os = require('os');
 const cheerio = require('cheerio');
-const driverController = require('./controller/driverControl')
+const driverController = require('../controller/driverControl')
 
 function getChromeProfileDirectory() {
   const platform = os.platform();
