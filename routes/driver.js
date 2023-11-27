@@ -14,7 +14,7 @@ router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
 router.post('/start_code', (req, res) => {
-    const urlToOpen = 'https://chat.openai.com/c/577e1e30-f2f9-4916-b7a7-897050f954e2'; // Replace with the URL you want to open
+    const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
     res.json({ url: urlToOpen });
     // startPythonScript((result) => {
     //     res.send(result);
