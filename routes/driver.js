@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path'); // Import the 'path' module
-const fs = require('fs').promises; // Import the 'fs' module for file operations
+const puppeteer = require('puppeteer');
 const driverController = require('../controller/driverControl');
 const  { authenticateToken }  = require('../middleware/authMiddleware');
 const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
