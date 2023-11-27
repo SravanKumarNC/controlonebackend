@@ -15,41 +15,6 @@ router.get('/api/driver/:username', driverController.getDriverByID);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
-router.get('/autofill-and-capture', async (req, res) => {
-  try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    await page.goto('https://awslabs.github.io/amazon-kinesis-video-streams-webrtc-sdk-js/examples/index.html');
-
-    // Perform actions to fill the form using Puppeteer
-    // For example:
-    const regionInput = document.getElementById('region');
-    regionInput.value = 'us-west-2'; // Set the desired value here
-    const channeInput = document.getElementById('ChannelName');
-    channelInput.value = 'channel50';
-    // ... Continue filling the form with necessary values
-
-    // Capture the video stream using Puppeteer (example)
-    const videoStream = await page.evaluate(() => {
-      // Perform actions to capture the video stream and extract necessary data
-      // Return the video stream data or relevant information
-      // This is a hypothetical example, actual implementation depends on the target site's structure
-      const videoElement = document.querySelector('video');
-      return videoElement ? videoElement.src : null;
-    });
-
-    await browser.close();
-
-    // Send the captured video stream data or information back to the client
-    res.status(200).json({ videoStream });
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).send('Failed to capture the video stream');
-  }
-});
-
-
 
 router.get('/start_code', (req, res) => {
     const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
