@@ -5,6 +5,8 @@ const puppeteer = require('puppeteer');
 const os = require('os');
 const cheerio = require('cheerio');
 const driverController = require('../controller/driverControl')
+const  { authenticateToken }  = require('../middleware/authMiddleware');
+const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
 
 function getChromeProfileDirectory() {
   const platform = os.platform();
