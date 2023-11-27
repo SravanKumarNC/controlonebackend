@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path'); // Import the 'path' module
+const path = require('path');
 const puppeteer = require('puppeteer');
-const driverController = require('../controller/driverControl');
-const  { authenticateToken }  = require('../middleware/authMiddleware');
-const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
 const os = require('os');
-
-
+const cheerio = require('cheerio');
 
 function getChromeProfileDirectory() {
   const platform = os.platform();
@@ -26,23 +22,25 @@ function getChromeProfileDirectory() {
 
   return chromeProfileDir;
 }
+
 router.get('/modified_page', async (req, res) => {
   const htmlFilePath = 'E:/ControlOne/backend/test/lokesh1.html';
   const profileDirectory = getChromeProfileDirectory();
 
-  const chromeOptions = new chrome.Options();
-  chromeOptions.addArguments('--user-data-dir=' + profileDirectory);
-  chromeOptions.addArguments('--use-fake-ui-for-media-stream');
-  chromeOptions.addArguments('--window-size=1080,720');
-  chromeOptions.addArguments('--disable-gpu');
-  chromeOptions.excludeSwitches('enable-automation');
-
-  const driver = new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
-
   try {
-    await driver.get(`file://${htmlFilePath}`);
+    const browser = await puppeteer.launch({
+      userDataDir: profileDirectory,
+      args: [
+        '--use-fake-ui-for-media-stream',
+        '--window-size=1080,720',
+        '--disable-gpu'
+      ]
+    });
+    const page = await browser.newPage();
 
-    const htmlData = await driver.getPageSource();
+    await page.goto(`file://${htmlFilePath}`);
+
+    const htmlData = await page.content();
     const $ = cheerio.load(htmlData);
 
     // Modify the webpage using Cheerio
@@ -54,8 +52,7 @@ router.get('/modified_page', async (req, res) => {
     // Get the modified HTML content
     const modifiedHtml = $.html();
 
-    // Close the WebDriver
-    await driver.quit();
+    await browser.close();
 
     // Send the modified HTML content as a response
     res.send(modifiedHtml);
