@@ -50,7 +50,6 @@ app.use(forkliftRoutes);
 app.use(clientRoutes);
 app.use(taskRoutes);
 app.use(driverRoutes);
-app.use('/stored-page', express.static(path.join(__dirname, 'PythonCode')));
 // Route to set session data
 // app.get('/set-session', (req, res) => {
 //   req.session.user = { username: 'example_user', email: 'user@example.com' };
