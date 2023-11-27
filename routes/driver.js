@@ -15,7 +15,7 @@ router.delete('/api/driver/:username', driverController.deleteDriver);
 
 router.get('/stored_webpage', async (req, res) => {
     try {
-        const filePath = path.join('../PythonCode/', 'lokesh1.html'); // Replace with path to your stored HTML file
+        const filePath = path.join(__dir, '../PythonCode/lokesh1.html'); // Replace with path to your stored HTML file
         const htmlContent = await fs.readFile(filePath, 'utf-8');
         res.json({ htmlContent, formData: storedFormData });
     } catch (error) {
