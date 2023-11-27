@@ -13,7 +13,7 @@ router.get('/api/driver/:username', driverController.getDriverByID);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
-router.post('/start_code', (req, res) => {
+router.get('/start_code', (req, res) => {
     const urlToOpen = 'https://webrtc.github.io/test-pages/src/audio-and-video/'; // Replace with the URL you want to open
     res.json({ url: urlToOpen });
     // startPythonScript((result) => {
