@@ -6,7 +6,6 @@ const driverController = require('../controller/driverControl');
 const  { authenticateToken }  = require('../middleware/authMiddleware');
 const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
 const os = require('os');
-const path = require('path');
 
 
 
