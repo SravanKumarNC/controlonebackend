@@ -5,6 +5,68 @@ const puppeteer = require('puppeteer');
 const driverController = require('../controller/driverControl');
 const  { authenticateToken }  = require('../middleware/authMiddleware');
 const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
+const os = require('os');
+const path = require('path');
+
+
+
+function getChromeProfileDirectory() {
+  const platform = os.platform();
+  let chromeProfileDir = '';
+
+  if (platform === 'win32') {
+    // For Windows
+    chromeProfileDir = path.join(os.homedir(), 'AppData', 'Local', 'Google', 'Chrome', 'User Data', 'Profile 1');
+  } else if (platform === 'darwin') {
+    // For macOS - Update this path according to Chrome's user data directory in macOS
+    chromeProfileDir = path.join(os.homedir(), 'Library', 'Application Support', 'Google', 'Chrome', 'Profile 1');
+  } else if (platform === 'linux') {
+    // For Linux - Update this path according to Chrome's user data directory in Linux
+    chromeProfileDir = path.join(os.homedir(), '.config', 'google-chrome', 'Profile 1');
+  }
+
+  return chromeProfileDir;
+}
+app.get('/modified_page', async (req, res) => {
+  const htmlFilePath = 'E:/ControlOne/backend/test/lokesh1.html';
+  const profileDirectory = getChromeProfileDirectory();
+
+  const chromeOptions = new chrome.Options();
+  chromeOptions.addArguments('--user-data-dir=' + profileDirectory);
+  chromeOptions.addArguments('--use-fake-ui-for-media-stream');
+  chromeOptions.addArguments('--window-size=1080,720');
+  chromeOptions.addArguments('--disable-gpu');
+  chromeOptions.excludeSwitches('enable-automation');
+
+  const driver = new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
+
+  try {
+    await driver.get(`file://${htmlFilePath}`);
+
+    const htmlData = await driver.getPageSource();
+    const $ = cheerio.load(htmlData);
+
+    // Modify the webpage using Cheerio
+    $('#region').attr('value', 'us-west-2');
+    $('#accessKeyId').attr('value', 'lmn');
+    $('#secretAccessKey').attr('value', 'xyz');
+    $('#channelName').attr('value', 'channel50');
+
+    // Get the modified HTML content
+    const modifiedHtml = $.html();
+
+    // Close the WebDriver
+    await driver.quit();
+
+    // Send the modified HTML content as a response
+    res.send(modifiedHtml);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 
 
 
