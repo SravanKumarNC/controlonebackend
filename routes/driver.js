@@ -18,7 +18,7 @@ router.get('/performAction', async (req, res) => {
 
     // Fill the form fields
     await page.type('#accessKeyId', 'value1'); // Replace with actual form field IDs and values
-    await page.type('#region', 'value2'); // Replace with actual form field IDs and values
+    await page.type('#region', 'us-west-2'); // Replace with actual form field IDs and values
 
     // Click the submit button
     await Promise.all([
