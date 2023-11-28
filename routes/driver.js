@@ -23,7 +23,7 @@ router.get('/performAction', async (req, res) => {
     // Click the submit button
     await Promise.all([
       page.waitForNavigation(), // Ensure navigation has finished after clicking
-      page.click('#submitButton'), // Replace with the ID of your submit button
+      page.click('#viewer-button'), // Replace with the ID of your submit button
     ]);
 
     const resultingURL = page.url(); // Get the resulting URL after actions
