@@ -8,6 +8,35 @@ const driverController = require('../controller/driverControl')
 const  { authenticateToken }  = require('../middleware/authMiddleware');
 const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
 
+router.get('/performAction', async (req, res) => {
+ try {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    // Go to the page where the form is present
+    await page.goto('https://awslabs.github.io/amazon-kinesis-video-streams-webrtc-sdk-js/examples/index.html'); // Replace with your URL
+
+    // Fill the form fields
+    await page.type('#accessKeyId', 'value1'); // Replace with actual form field IDs and values
+    await page.type('#region', 'value2'); // Replace with actual form field IDs and values
+
+    // Click the submit button
+    await Promise.all([
+      page.waitForNavigation(), // Ensure navigation has finished after clicking
+      page.click('#submitButton'), // Replace with the ID of your submit button
+    ]);
+
+    const resultingURL = page.url(); // Get the resulting URL after actions
+
+    await browser.close();
+
+    res.status(200).send(resultingURL); // Send the resulting URL to the client
+  } catch (error) {
+    console.error('Error performing action:', error);
+    res.status(500).send('Error performing action');
+  }
+});
+
 function getChromeProfileDirectory() {
   const platform = os.platform();
   let chromeProfileDir = '';
