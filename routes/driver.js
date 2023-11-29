@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 const os = require('os');
-const cheerio = require('cheerio');
+// const cheerio = require('cheerio');
 const driverController = require('../controller/driverControl')
 const  { authenticateToken }  = require('../middleware/authMiddleware');
 const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHandler');
