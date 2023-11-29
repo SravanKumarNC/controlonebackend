@@ -37,7 +37,7 @@ const updateDriver = async (req, res) => {
     }
 };
 
-const getDriverByID = async (req, res) => {
+const getDriverByUsername = async (req, res) => {
     try {
         // neededID = String(req.params.id);
         const driverOne = await driverModel.findOne({ username: req.params.username });
@@ -70,7 +70,7 @@ const deleteDriver = async (req, res) => {
 module.exports = {
     getAllDriver,
     createDriver,
-    getDriverByID,
+    getDriverByUsername,
     updateDriver,
     deleteDriver,
 };
