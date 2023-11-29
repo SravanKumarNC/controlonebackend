@@ -27,7 +27,7 @@ const port = 4000;
 app.use(
   cors({
     origin: ['https://control-one.onrender.com','http://localhost:3000'],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST","PUT"],
     credentials: true // Enable credentials (cookies, authorization headers)
   })
 );
