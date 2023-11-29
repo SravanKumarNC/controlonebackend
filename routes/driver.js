@@ -15,7 +15,7 @@ const {startPythonScript,stopPythonScript} = require('../middleware/pythonCodeHa
 // router.use('/api/driver', authenticateToken); 
 router.get('/api/driver', driverController.getAllDriver);
 router.post('/api/driver', driverController.createDriver);
-router.get('/api/driver/:username', driverController.getDriverByID);
+router.get('/api/driver/:username', driverController.getDriverByUsername);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
 
