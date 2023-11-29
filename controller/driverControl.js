@@ -67,10 +67,42 @@ const deleteDriver = async (req, res) => {
     }
 };
 
+const makeFalse = async(req,res) => {
+    try
+    {
+        filter = {username: req.params.username};
+        const UpdatedData = await driverModel.findOneAndUpdate(filter,{'acceptStatus':false})
+        if (!UpdatedData) {
+            return res.status(404).send('Client Not Found');
+        }
+        res.json(UpdatedData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Issue');
+    }
+}
+
+const makeTrue = async(req,res) => {
+    try
+    {
+        filter = {username: req.params.username};
+        const UpdatedData = await driverModel.findOneAndUpdate(filter,{'acceptStatus':true})
+        if (!UpdatedData) {
+            return res.status(404).send('Client Not Found');
+        }
+        res.json(UpdatedData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Issue');
+    }
+}
+
 module.exports = {
     getAllDriver,
     createDriver,
     getDriverByUsername,
     updateDriver,
     deleteDriver,
+    makeFalse,
+    makeTrue
 };
