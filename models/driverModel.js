@@ -21,7 +21,8 @@ const driverSchema = mongoose.Schema({
     status : String,
     tasksAssigned : Number,
     tasksCompleted : Number,
-    tasksPending : Number
+    tasksPending : Number,
+    driverAvailability: String
 }, { collection: 'drivers' });
 
 const driverModel = mongoose.model('driverModel', driverSchema);
