@@ -19,7 +19,9 @@ const driverSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     status : String,
-    tasksAssigned : Number
+    tasksAssigned : Number,
+    tasksCompleted : Number,
+    tasksPending : Number
 }, { collection: 'drivers' });
 
 const driverModel = mongoose.model('driverModel', driverSchema);
