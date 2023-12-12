@@ -20,7 +20,8 @@ const ForkliftSchema = mongoose.Schema({
     encode:String,
     range:String,
     pedalValue:String,
-    IPAddress: String
+    IPAddress: String,
+    StreamName:String
 },{collection:'equipments'})
 
 const ForkliftModel = mongoose.model('ForkliftModel', ForkliftSchema)
