@@ -26,7 +26,7 @@ const driverSchema = mongoose.Schema({
     acceptStatus:Boolean,
     assign:{
         type:Number,
-        default:0
+        default:0,
     }
 }, { collection: 'drivers' });
 
