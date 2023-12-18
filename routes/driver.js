@@ -12,6 +12,8 @@ router.get('/api/driver', driverController.getAllDriver);
 router.post('/api/driver', driverController.createDriver);
 router.put('/api/driver/makefalse/:username',driverController.makeFalse)
 router.put('/api/driver/maketrue/:username',driverController.makeTrue)
+router.put('/api/driver/videotrue/:username',driverController.VideoTrue)
+router.put('/api/driver/videofalse/:username',driverController.VideoFalse)
 router.get('/api/driver/:username', driverController.getDriverByUsername);
 router.put('/api/driver/:username', driverController.updateDriver);
 router.delete('/api/driver/:username', driverController.deleteDriver);
