@@ -97,6 +97,37 @@ const makeTrue = async(req,res) => {
     }
 }
 
+const VideoFalse = async(req,res) => {
+    try
+    {
+        filter = {username: req.params.username};
+        const UpdatedData = await driverModel.findOneAndUpdate(filter,{'VideoPlayer':false})
+        if (!UpdatedData) {
+            return res.status(404).send('Client Not Found');
+        }
+        res.json(UpdatedData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Issue');
+    }
+}
+
+
+const VideoTrue = async(req,res) => {
+    try
+    {
+        filter = {username: req.params.username};
+        const UpdatedData = await driverModel.findOneAndUpdate(filter,{'VideoPlayer':true})
+        if (!UpdatedData) {
+            return res.status(404).send('Client Not Found');
+        }
+        res.json(UpdatedData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Issue');
+    }
+}
+
 module.exports = {
     getAllDriver,
     createDriver,
@@ -104,5 +135,7 @@ module.exports = {
     updateDriver,
     deleteDriver,
     makeFalse,
-    makeTrue
+    makeTrue,
+    VideoTrue,
+    VideoFalse
 };
