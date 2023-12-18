@@ -27,7 +27,8 @@ const driverSchema = mongoose.Schema({
     assign:{
         type:Number,
         default:0,
-    }
+    },
+    VideoPlayer:Boolean
 }, { collection: 'drivers' });
 
 const driverModel = mongoose.model('driverModel', driverSchema);
