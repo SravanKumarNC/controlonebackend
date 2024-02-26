@@ -31,20 +31,21 @@ const port = 4000;
 
 // Middleware setup
 app.use(
-  cors({
-    origin: [
-      "https://control-one.onrender.com",
-      "http://localhost:3000",
-      "https://control-one-driver2.onrender.com",
-      "https://control-one-d.onrender.com",
-      "http://localhost:3001",
-      "http://controlone-dashboard.com.s3-website-us-west-2.amazonaws.com",
-      "http://controlone-dashboard.com.s3-website-us-west-2.amazonaws.com/",
-      "http://192.168.2.93:3000",
-    ],
-    methods: ["GET", "POST", "PUT"],
-    credentials: true, // Enable credentials (cookies, authorization headers)
-  })
+  // cors({
+  //   origin: [
+  //     "https://control-one.onrender.com",
+  //     "http://localhost:3000",
+  //     "https://control-one-driver2.onrender.com",
+  //     "https://control-one-d.onrender.com",
+  //     "http://localhost:3001",
+  //     "http://controlone-dashboard.com.s3-website-us-west-2.amazonaws.com",
+  //     "http://controlone-dashboard.com.s3-website-us-west-2.amazonaws.com/",
+  //     "http://192.168.2.93:3000",
+  //   ],
+  //   methods: ["GET", "POST", "PUT"],
+  //   credentials: true, // Enable credentials (cookies, authorization headers)
+  // })
+  cors()
 );
 
 app.use(express.json());
