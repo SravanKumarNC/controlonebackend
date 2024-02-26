@@ -15,7 +15,6 @@ const driverSchema = mongoose.Schema({
         required: true,
     },
 
-    
     firstName: String,
     lastName: String,
     status : String,
