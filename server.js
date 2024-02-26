@@ -40,6 +40,7 @@ app.use(
       "http://localhost:3001",
       "http://controlone-dashboard.com.s3-website-us-west-2.amazonaws.com",
       "http://controlone-dashboard.com.s3-website-us-west-2.amazonaws.com/",
+      "http://192.168.2.93:3000",
     ],
     methods: ["GET", "POST", "PUT"],
     credentials: true, // Enable credentials (cookies, authorization headers)

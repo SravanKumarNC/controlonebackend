@@ -1,7 +1,0 @@
-pymongo == 4.5.0
-dnspython
-matplotlib
-bs4
-selenium
-pathlib
-chromedriver
